@@ -13,6 +13,9 @@ public class HelloController {
     @RequestMapping("/hello")
     public String hello(String name){
         System.out.println("hello springmvc:" + name);
+
+        //redirect 重定向 url会变化
+        //forword 转发  url不会产生变化
         return "redirect:index.jsp";
 
     }
