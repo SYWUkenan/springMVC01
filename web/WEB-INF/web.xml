@@ -43,4 +43,15 @@
         <url-pattern>/</url-pattern>
         <servlet-name>springmvc</servlet-name>
     </filter-mapping>
+
+    <!--处理HTML中不支持rest中put和delete-->
+    <filter>
+        <filter-name>hiddenHttpMethodFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>hiddenHttpMethodFilter</filter-name>
+        <url-pattern>/</url-pattern>
+        <servlet-name>springmvc</servlet-name>
+    </filter-mapping>
 </web-app>

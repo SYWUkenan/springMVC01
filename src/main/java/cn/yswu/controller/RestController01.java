@@ -3,17 +3,20 @@ package cn.yswu.controller;
 import cn.yswu.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author yswu
  * @date 2021-06-15 17:24
  *
  * 用户功能的rest风格
+ *
+ * 基于restful风格的服务api
  */
 
-@Controller
-@RequestMapping("/rest")
-public class RestController {
+@RestController
+@RequestMapping("/restful")
+public class RestController01 {
 
     /**
      * 查询用户
@@ -23,7 +26,7 @@ public class RestController {
     @GetMapping("/user/{id}")
     public String get(@PathVariable("id") Integer id){
         System.out.println("查询用户："+id);
-        return  "index.jsp";
+        return  "{'id':'1','name':'吴雨声'}";
 
     }
 
@@ -35,20 +38,20 @@ public class RestController {
     @PostMapping("/user")
     public String add(User user){
         System.out.println("增加用户"+user);
-        return  "index.jsp";
+        return  "{'msg':'success'}";
 
     }
 
 
     /**
      * 修改用户
-     * @param id
+     * @param
      * @return
      */
     @PutMapping("/user/{id}")
     public String update(User user){
         System.out.println("修改用户；"+user);
-        return "index.jsp";
+        return "{'msg':'success'}";
     }
 
     /**
@@ -59,7 +62,7 @@ public class RestController {
     @DeleteMapping("/user/{id}")
     public String delete(@PathVariable("id") Integer id){
         System.out.println("删除用户："+id);
-        return "index.jsp";
+        return "{'msg':'success'}";
     }
 
 }
