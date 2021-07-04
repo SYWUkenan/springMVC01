@@ -34,5 +34,9 @@
         <property name="defaultEncoding" value="utf-8"></property>
         <property name="maxUploadSize" value="#{1024*1024*10}"></property>
     </bean>
+
+    <mvc:interceptors>
+        <bean class="cn.yswu.interceptor.MyInterceptor"></bean>
+    </mvc:interceptors>
     <mvc:annotation-driven></mvc:annotation-driven>
 </beans>

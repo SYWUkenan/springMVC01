@@ -2,15 +2,14 @@ package cn.yswu.controller;
 
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.Mapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.URLEncoder;
 
 /**
@@ -57,10 +56,40 @@ public class DownloadController {
 
     }
 
+    /**
+     * 单文件上传
+     * @param desc
+     * @param myfile
+     * @return
+     * @throws IOException
+     */
     @RequestMapping("/upload")
-    public String upload(String desc, MultipartFile myfile){
+    public String upload(String desc, MultipartFile myfile) throws IOException {
         System.out.println(desc);
         System.out.println(myfile.getOriginalFilename());
+        String path="/Users/apple/Documents/dev_research/SpringMVC/"+myfile.getOriginalFilename();
+        File file = new File(path);
+        myfile.transferTo(file);
+        return "success";
+
+    }
+
+    /**
+     * 多个文件进行上传操作
+     * @param desc
+     * @param myfile
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping("/upload02")
+    public String upload02(String desc, MultipartFile[] myfile) throws IOException {
+        for(MultipartFile multipartFile:myfile) {
+            System.out.println(desc);
+            System.out.println(multipartFile.getOriginalFilename());
+            String path = "/Users/apple/Documents/dev_research/SpringMVC/" + multipartFile.getOriginalFilename();
+            File file = new File(path);
+            multipartFile.transferTo(file);
+        }
         return "success";
 
     }
